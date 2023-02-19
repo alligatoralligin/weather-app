@@ -14,7 +14,10 @@ const cities = [
   "Hanoi",
 ];
 
-const date = new Date();
+const isoDate = new Date().toISOString().split("T")[0];
+var myDate = new Date();
+myDate.setDate(myDate.getDate() + parseInt(7));
+var newIsoDate = myDate.toISOString().split("T")[0];
 
 function WeatherDisplay() {
   const [weatherData, setweatherData] = useState({});
@@ -48,8 +51,10 @@ function WeatherDisplay() {
         lat: geocodeObject.data.results[0].latitude,
         long: geocodeObject.data.results[0].longitude,
       }));
-      console.log(geocodeObject);
+      // console.log(geocodeObject);
       console.log("getgeoCode is running");
+      console.log(isoDate);
+      console.log(newIsoDate);
     }
     getGeocode("Toronto");
   }, []);
@@ -71,17 +76,19 @@ function WeatherDisplay() {
 
     async function getWeeklyWeather() {
       const weekObject = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${geoCode.lat}&longitude=${geoCode.long}&daily=weathercode,temperature_2m_max&current_weather=true&timezone=auto&start_date=2023-02-17&end_date=2023-02-23`
+        `https://api.open-meteo.com/v1/forecast?latitude=${geoCode.lat}&longitude=${geoCode.long}&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timezone=auto&start_date=${isoDate}&end_date=${newIsoDate}`
       );
       setweekWeather((weekWeather) => [
         ...weekWeather,
         {
           time: weekObject.data.daily.time,
           max_temp: weekObject.data.daily.temperature_2m_max,
+          min_temp: weekObject.data.daily.temperature_2m_min,
+          weather_code: weekObject.data.daily.weathercode,
         },
       ]);
       console.log("here is weekObject");
-      console.log(weekObject.data.daily.time);
+      console.log(weekObject.data);
     }
     // getWeatherData();
     getWeeklyWeather();
