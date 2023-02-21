@@ -9,6 +9,7 @@ import { renderImg, renderWeatherImg } from "./renderImgLogic";
 
 function SingleweatherWeek(props) {
   renderImg(props.weatherCode);
+  //   returns renderWeatherImg content based on props.weatherCode value
 
   const card = (
     <React.Fragment>

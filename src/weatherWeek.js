@@ -37,7 +37,7 @@ function WeatherWeek(props) {
         container="true"
         component={"div"}
         display="inline-flex"
-        width="100%"
+        width="85%"
         flex-wrap="wrap"
       >
         {renderList}

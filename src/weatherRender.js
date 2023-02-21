@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import WeatherWeek from "./weatherWeek";
+import MainWeatherComponent from "./mainWeather";
 import axios from "axios";
+import { Typography } from "@mui/material";
 
 const cities = [
   "Tokyo",
@@ -20,10 +22,9 @@ myDate.setDate(myDate.getDate() + parseInt(7));
 var newIsoDate = myDate.toISOString().split("T")[0];
 
 function WeatherDisplay() {
-  const [weatherData, setweatherData] = useState({});
+  // const [weatherData, setweatherData] = useState({});
   const [weekWeather, setweekWeather] = useState("");
   const [geoCode, setgeoCode] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
 
   //   Object
   // config
@@ -57,6 +58,7 @@ function WeatherDisplay() {
       console.log(newIsoDate);
     }
     getGeocode("Toronto");
+    // getGeocode("Paris");
   }, []);
 
   useEffect(() => {
@@ -76,8 +78,9 @@ function WeatherDisplay() {
 
     async function getWeeklyWeather() {
       const weekObject = await axios.get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${geoCode.lat}&longitude=${geoCode.long}&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timezone=auto&start_date=${isoDate}&end_date=${newIsoDate}`
+        `https://api.open-meteo.com/v1/forecast?latitude=${geoCode.lat}&longitude=${geoCode.long}&hourly=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min&current_weather=true&timezone=auto&start_date=${isoDate}&end_date=${newIsoDate}`
       );
+
       setweekWeather((weekWeather) => [
         ...weekWeather,
         {
@@ -85,23 +88,36 @@ function WeatherDisplay() {
           max_temp: weekObject.data.daily.temperature_2m_max,
           min_temp: weekObject.data.daily.temperature_2m_min,
           weather_code: weekObject.data.daily.weathercode,
+          current_weather: weekObject.data.current_weather.temperature,
+          last_updated: weekObject.data.current_weather.time,
+          current_weathercode: weekObject.data.current_weather.weathercode,
+          current_winddirection: weekObject.data.current_weather.winddirection,
         },
       ]);
       console.log("here is weekObject");
       console.log(weekObject.data);
+      console.log("weekweather object", weekWeather);
     }
     // getWeatherData();
+
     getWeeklyWeather();
   }, [geoCode]);
   let weatherWeekRender;
+  let mainWeatherRender;
   if (weekWeather !== "") {
     weatherWeekRender = <WeatherWeek weekData={weekWeather} />;
+    mainWeatherRender = <MainWeatherComponent weekData={weekWeather} />;
   }
   return (
     <div>
-      <p>
-        name:{geoCode.name} lat:{geoCode.lat} long:{geoCode.long}
-      </p>
+      <Typography variant="h2">
+        {geoCode.name}
+        <Typography variant="h6">
+          lat:{geoCode.lat} long:{geoCode.long}
+        </Typography>
+      </Typography>
+
+      {mainWeatherRender}
       {weatherWeekRender}
     </div>
   );
