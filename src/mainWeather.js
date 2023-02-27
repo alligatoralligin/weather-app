@@ -3,8 +3,9 @@ import React from "react";
 import { renderImg, imgSrc, imgAlt } from "./renderImgLogic";
 
 function MainWeatherComponent(props) {
-  renderImg(props.weekData[0].current_weathercode);
+  renderImg(props.weekData.current_weathercode);
   console.log("Main Weather Component", imgSrc);
+  console.log(props.weekData.current_weathercode);
   return (
     <Box
       sx={{
@@ -25,13 +26,17 @@ function MainWeatherComponent(props) {
       >
         <img src={imgSrc} alt={imgAlt} style={{ maxHeight: 225 }}></img>
         <Typography variant="h3" gutterBottom>
-          {props.weekData[0].current_weather}°C
+          {props.weekData.current_weather}°C ||{""}
+          {Math.round(
+            ((props.weekData.current_weather * 1.8 + 32) * 100) / 100
+          )}
+          °F
         </Typography>
         <Typography variant="p">
-          last update:{props.weekData[0].last_updated}
+          last update:{props.weekData.last_updated}
         </Typography>
 
-        <p>current wind direction:{props.weekData[0].current_winddirection}</p>
+        <p>current wind direction:{props.weekData.current_winddirection}</p>
       </Card>
 
       {/* last_updated: weekObject.data.current_weather.time, current_weathercode:

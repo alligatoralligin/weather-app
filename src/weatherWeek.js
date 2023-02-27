@@ -11,25 +11,31 @@ const daysOfWeek = [
   "Saturday",
 ];
 
-const renderList = [];
+let renderList = [];
 
 function WeatherWeek(props) {
-  const maxtempArray = props.weekData[0].max_temp;
+  const maxtempArray = props.weekData.max_temp;
   const ArrayLength = maxtempArray.length;
+  const currentCity = props.cityName;
 
-  for (let i = 0; i < ArrayLength; i++) {
-    renderList.push(
-      <Grid item="true" component={"div"} width="100%">
-        <SingleweatherWeek
-          time={props.weekData[0].time[i]}
-          maxTemp={props.weekData[0].max_temp[i]}
-          minTemp={props.weekData[0].min_temp[i]}
-          weatherCode={props.weekData[0].weather_code[i]}
-        />
-      </Grid>
-    );
+  if (props.cityName !== props.weekData.name) {
+    renderList = [];
+    for (let i = 0; i < ArrayLength; i++) {
+      renderList.push(
+        <Grid item="true" component={"div"} width="100%">
+          <SingleweatherWeek
+            time={props.weekData.time[i]}
+            maxTemp={props.weekData.max_temp[i]}
+            minTemp={props.weekData.min_temp[i]}
+            weatherCode={props.weekData.weather_code[i]}
+          />
+        </Grid>
+      );
+    }
   }
+
   console.log(props.weekData[0]);
+
   return (
     <div>
       <p>Weekly Weather</p>

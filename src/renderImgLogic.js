@@ -1,3 +1,4 @@
+import React from "react";
 import clearSkyIcon from "./img/clear-sky-icon.png";
 import clearDay from "./img/svg/clear-day.svg";
 import overcast from "./img/svg/overcast.svg";
@@ -5,6 +6,7 @@ import drizzle from "./img/svg/drizzle.svg";
 import rain from "./img/svg/rain.svg";
 import extremeSleet from "./img/svg/extreme-day-sleet.svg";
 import extremeSnow from "./img/svg/extreme-day-snow.svg";
+import extremeHail from "./img/svg/extreme-hail.svg";
 import fog from "./img/svg/fog.svg";
 import snow from "./img/svg/snow.svg";
 import thunderstorms from "./img/svg/thunderstorms.svg";
@@ -31,9 +33,10 @@ export function renderImg(propsweatherCode) {
   }
   if (isBetween(propsweatherCode, 45, 48) === true) {
     renderWeatherImg = <img src={fog} alt="Fog and depositing rime fog"></img>;
+    imgSrc = fog;
+    imgAlt = "Fog and depositing rime fog";
   }
-  imgSrc = fog;
-  imgAlt = "Fog and depositing rime fog";
+
   if (isBetween(propsweatherCode, 51, 55) === true) {
     renderWeatherImg = (
       <img
@@ -82,7 +85,9 @@ export function renderImg(propsweatherCode) {
     imgAlt = "Snow fall: Slight, moderate, and heavy intensity";
   }
   if (isBetween(propsweatherCode, 80, 82) === true) {
-    renderWeatherImg = <img src={clearDay} alt="Snow Grains"></img>;
+    renderWeatherImg = <img src={extremeHail} alt="Snow Grains"></img>;
+    imgSrc = extremeHail;
+    imgAlt = "Snow Grains";
   }
   if (isBetween(propsweatherCode, 77, 77) === true) {
     renderWeatherImg = (
