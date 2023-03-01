@@ -30,7 +30,7 @@ function SingleweatherWeek(props) {
   );
 
   return (
-    <Box sx={{ maxWidth: 275, height: 260, m: 0.4 }}>
+    <Box sx={{ maxWidth: 275, height: 270, m: 0.4 }}>
       <Card
         variant="outlined"
         sx={{
