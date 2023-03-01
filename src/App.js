@@ -103,7 +103,6 @@ function App() {
     renderRoutes = [
       /* renderRoutes are avaiable to prevent having no data*/
       <Route path="/" element={<HomePage />}></Route>,
-      <Route path="/weather-app" element={<HomePage />}></Route>,
       <Route
         path="/Tokyo"
         element={

@@ -1,7 +1,7 @@
 {
   "name": "weather-app",
   "version": "0.1.0",
-  "homepage": "https://alligatoralligin.github.io/weather-app",
+  "homepage": "https://alligatoralligin.github.io",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
