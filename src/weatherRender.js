@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import WeatherWeek from "./weatherWeek";
 import MainWeatherComponent from "./mainWeather";
-import axios from "axios";
 import { Typography } from "@mui/material";
 
 function WeatherDisplay(props) {
@@ -24,8 +23,16 @@ function WeatherDisplay(props) {
     );
   }
   return (
-    <div className="App" style={{ height: "100vh" }}>
-      {props.cityName} <br></br>
+    <div
+      className="App"
+      style={{
+        height: "100vh",
+        backgroundImage: `url(${props.cityImg})`,
+        backgroundSize: "cover",
+      }}
+    >
+      <Typography variant="h3">{props.cityName}</Typography>
+      <br></br>
       {renderMainWeather}
       {renderWeatherWeek}
     </div>

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 import WeatherDisplay from "./weatherRender";
+import ResponsiveAppBar from "./navbar";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import DataFetch from "./dataFetch";
+import HomePage from "./homePage";
+import LoadingPage from "./loadingPage";
+import { backgroundImages } from "./bgImgImport";
 
 const cities = [
   "Tokyo",
@@ -32,10 +35,11 @@ function App() {
   const [geoCode, setgeoCode] = useState("");
   const [geoCodeLoaded, setgeoCodeLoaded] = useState(false);
   const [weekWeather, setweekWeather] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function getGeocode(city) {
+      setIsLoading(true);
       const geocodeObject = await axios.get(
         `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`
       );
@@ -86,6 +90,7 @@ function App() {
         );
       }
       setweekWeather((weekWeather) => [...weekWeather, ...fullweatherData]);
+      setIsLoading(false);
     };
     if (geoCodeLoaded === true) {
       WeeklyWeatherLoop();
@@ -94,13 +99,17 @@ function App() {
 
   let renderRoutes;
   if (geoCode !== "" && weekWeather !== "") {
+    /*if geoCode and weekWeather are not empty*/
     renderRoutes = [
+      /* renderRoutes are avaiable to prevent having no data*/
+      <Route path="/" element={<HomePage />}></Route>,
       <Route
         path="/Tokyo"
         element={
           <WeatherDisplay
             cityData={weekWeather[0]}
             cityName={geoCode[0].name}
+            cityImg={backgroundImages[0]}
           />
         }
       />,
@@ -110,15 +119,17 @@ function App() {
           <WeatherDisplay
             cityData={weekWeather[1]}
             cityName={geoCode[1].name}
+            cityImg={backgroundImages[1]}
           />
         }
       />,
       <Route
-        path="/LosAngeles"
+        path="/Los Angeles"
         element={
           <WeatherDisplay
             cityData={weekWeather[2]}
             cityName={geoCode[2].name}
+            cityImg={backgroundImages[2]}
           />
         }
       />,
@@ -128,36 +139,71 @@ function App() {
           <WeatherDisplay
             cityData={weekWeather[3]}
             cityName={geoCode[3].name}
+            cityImg={backgroundImages[3]}
+          />
+        }
+      />,
+      <Route
+        path="/Istanbul"
+        element={
+          <WeatherDisplay
+            cityData={weekWeather[4]}
+            cityName={geoCode[4].name}
+            cityImg={backgroundImages[4]}
+          />
+        }
+      />,
+      <Route
+        path="/Paris"
+        element={
+          <WeatherDisplay
+            cityData={weekWeather[5]}
+            cityName={geoCode[5].name}
+            cityImg={backgroundImages[5]}
+          />
+        }
+      />,
+      <Route
+        path="/Houston"
+        element={
+          <WeatherDisplay
+            cityData={weekWeather[6]}
+            cityName={geoCode[6].name}
+            cityImg={backgroundImages[6]}
+          />
+        }
+      />,
+      <Route
+        path="/Busan"
+        element={
+          <WeatherDisplay
+            cityData={weekWeather[7]}
+            cityName={geoCode[7].name}
+            cityImg={backgroundImages[7]}
+          />
+        }
+      />,
+      <Route
+        path="/Hanoi"
+        element={
+          <WeatherDisplay
+            cityData={weekWeather[8]}
+            cityName={geoCode[8].name}
+            cityImg={backgroundImages[8]}
           />
         }
       />,
     ];
   }
+  let loadingScreen;
+  if (isLoading) {
+    loadingScreen = <LoadingPage></LoadingPage>;
+  }
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Tokyo">Tokyo</Link>
-          </li>
-          <li>
-            <Link to="/Batavia">Batavia</Link>
-          </li>
-          <li>
-            <Link to="/LosAngeles">Los Angeles</Link>
-          </li>
-          <li>
-            <Link to="/Toronto">Toronto</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={"Hello this is homepage"}></Route>
-        {renderRoutes}
-      </Routes>
+      <ResponsiveAppBar />
+      {loadingScreen}
+      <Routes>{renderRoutes}</Routes>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Typography, Container } from "@mui/material";
 import React from "react";
 import { renderImg, imgSrc, imgAlt } from "./renderImgLogic";
 
@@ -10,7 +10,7 @@ function MainWeatherComponent(props) {
     <Box
       sx={{
         p: 2,
-        width: "90vw",
+        width: "30vw",
         height: "45vh",
         display: "inline-block",
       }}
@@ -19,9 +19,11 @@ function MainWeatherComponent(props) {
         sx={{
           objectFit: "contain",
           height: "45vh",
-          width: "90vw",
+          width: "100%",
           alignSelf: "center",
           overflow: "hidden",
+          backgroundColor: "transparent",
+          boxShadow: "none",
         }}
       >
         <img src={imgSrc} alt={imgAlt} style={{ maxHeight: 225 }}></img>
@@ -33,10 +35,10 @@ function MainWeatherComponent(props) {
           °F
         </Typography>
         <Typography variant="p">
-          last update:{props.weekData.last_updated}
+          Last Update:{props.weekData.last_updated}
         </Typography>
 
-        <p>current wind direction:{props.weekData.current_winddirection}</p>
+        <p>current wind direction:{props.weekData.current_winddirection}°</p>
       </Card>
 
       {/* last_updated: weekObject.data.current_weather.time, current_weathercode:

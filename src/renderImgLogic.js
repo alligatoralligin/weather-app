@@ -1,5 +1,4 @@
 import React from "react";
-import clearSkyIcon from "./img/clear-sky-icon.png";
 import clearDay from "./img/svg/clear-day.svg";
 import overcast from "./img/svg/overcast.svg";
 import drizzle from "./img/svg/drizzle.svg";
