@@ -2,6 +2,8 @@ import React from "react";
 import SingleweatherWeek from "./singleWeatherWeek";
 import Grid from "@mui/material/Typography";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+
 const daysOfWeek = [
   "Sunday",
   "Monday",
@@ -13,6 +15,18 @@ const daysOfWeek = [
 ];
 
 let renderList = [];
+
+const MediaQuery = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    overflow: "auto",
+  },
+  [theme.breakpoints.down("md")]: {
+    overflow: "auto",
+  },
+  [theme.breakpoints.down("lg")]: {
+    overflow: "auto",
+  },
+}));
 
 function WeatherWeek(props) {
   const maxtempArray = props.weekData.max_temp;
@@ -56,15 +70,17 @@ function WeatherWeek(props) {
   return (
     <div>
       <Typography variant="h6">Daily Weather</Typography>
-      <Grid
-        container="true"
-        component={"div"}
-        display="inline-flex"
-        width="85%"
-        flex-wrap="wrap"
-      >
-        {renderList}
-      </Grid>
+      <MediaQuery>
+        <Grid
+          container="true"
+          component={"div"}
+          display="inline-flex"
+          width="85vh"
+          flex-wrap="wrap"
+        >
+          {renderList}
+        </Grid>
+      </MediaQuery>
     </div>
   );
 }

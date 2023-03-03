@@ -4,8 +4,20 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { alpha } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { renderImg, renderWeatherImg } from "./renderImgLogic";
+
+const MediaQuery = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    height: "75%",
+  },
+  [theme.breakpoints.down("md")]: {
+    height: "75%",
+  },
+  [theme.breakpoints.down("lg")]: {
+    height: "75%",
+  },
+}));
 
 function SingleweatherWeek(props) {
   renderImg(props.weatherCode);
@@ -31,17 +43,19 @@ function SingleweatherWeek(props) {
 
   return (
     <Box sx={{ maxWidth: 275, height: 270, m: 0.4 }}>
-      <Card
-        variant="outlined"
-        sx={{
-          height: "100%",
-          borderRadius: 2.3,
-          border: 2,
-          backgroundColor: "rgba(137,196,244,0.65)",
-        }}
-      >
-        {card}
-      </Card>
+      <MediaQuery>
+        <Card
+          variant="outlined"
+          sx={{
+            height: "100%",
+            borderRadius: 2.3,
+            border: 2,
+            backgroundColor: "rgba(137,196,244,0.65)",
+          }}
+        >
+          {card}
+        </Card>
+      </MediaQuery>
     </Box>
   );
 }
