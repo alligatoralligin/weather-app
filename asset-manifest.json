@@ -1,7 +1,7 @@
 {
   "main.css": "/weather-app/static/css/main.68bdb98f.chunk.css",
-  "main.js": "/weather-app/static/js/main.685c03c6.chunk.js",
-  "main.js.map": "/weather-app/static/js/main.685c03c6.chunk.js.map",
+  "main.js": "/weather-app/static/js/main.d7067493.chunk.js",
+  "main.js.map": "/weather-app/static/js/main.d7067493.chunk.js.map",
   "static/js/1.af61781b.chunk.js": "/weather-app/static/js/1.af61781b.chunk.js",
   "static/js/1.af61781b.chunk.js.map": "/weather-app/static/js/1.af61781b.chunk.js.map",
   "static/css/2.afb3b27b.chunk.css": "/weather-app/static/css/2.afb3b27b.chunk.css",
@@ -36,13 +36,13 @@
   "static/media/TorontoBG.jpg": "/weather-app/static/media/TorontoBG.b95f6908.jpg",
   "static/media/ParisBG.jpg": "/weather-app/static/media/ParisBG.a220930b.jpg",
   "static/media/BusanBG.jpg": "/weather-app/static/media/BusanBG.27e7cc29.jpg",
-  "static/media/300.css": "/weather-app/static/media/roboto-latin-300-normal.b9c29351.woff2",
+  "static/media/300.css": "/weather-app/static/media/roboto-greek-300-normal.dcdaee37.woff2",
   "static/media/400.css": "/weather-app/static/media/roboto-latin-400-normal.15d9f621.woff2",
-  "static/media/500.css": "/weather-app/static/media/roboto-latin-500-normal.3a44e06e.woff2",
+  "static/media/500.css": "/weather-app/static/media/roboto-all-500-normal.68d75d95.woff",
   "static/media/700.css": "/weather-app/static/media/roboto-latin-700-normal.e9f5aaf5.woff2",
   "static/css/main.68bdb98f.chunk.css.map": "/weather-app/static/css/main.68bdb98f.chunk.css.map",
   "static/css/2.afb3b27b.chunk.css.map": "/weather-app/static/css/2.afb3b27b.chunk.css.map",
   "index.html": "/weather-app/index.html",
-  "precache-manifest.af1a37adfb4839a46db3095ca0b3fba5.js": "/weather-app/precache-manifest.af1a37adfb4839a46db3095ca0b3fba5.js",
+  "precache-manifest.3dae667954029423b761bb7f09bcd1fe.js": "/weather-app/precache-manifest.3dae667954029423b761bb7f09bcd1fe.js",
   "service-worker.js": "/weather-app/service-worker.js"
 }
