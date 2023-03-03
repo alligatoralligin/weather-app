@@ -6,14 +6,18 @@ import { styled } from "@mui/material/styles";
 const MediaQuery = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     display: "inline-flex",
+    overflow: "auto",
   },
   [theme.breakpoints.down("md")]: {
     display: "inline-flex",
+    overflow: "auto",
   },
   [theme.breakpoints.down("lg")]: {
     display: "inline-flex",
+    overflow: "auto",
   },
 }));
+
 function MainWeatherComponent(props) {
   renderImg(props.weekData.current_weathercode);
   console.log("Main Weather Component", imgSrc);
@@ -34,24 +38,26 @@ function MainWeatherComponent(props) {
             height: "45vh",
             width: "100%",
             alignSelf: "center",
-            overflow: "hidden",
+            overflow: "auto",
             backgroundColor: "transparent",
             boxShadow: "none",
           }}
         >
           <img src={imgSrc} alt={imgAlt} style={{ maxHeight: 225 }}></img>
-          <Typography variant="h3" gutterBottom>
+
+          <Typography variant="h3" gutterBottom fontWeight={600}>
             {props.weekData.current_weather}°C ||{""}
             {Math.round(
               ((props.weekData.current_weather * 1.8 + 32) * 100) / 100
             )}
             °F
           </Typography>
-          <Typography variant="p">
-            Last Update:{props.weekData.last_updated}
-          </Typography>
 
-          <p>current wind direction:{props.weekData.current_winddirection}°</p>
+          <Typography variant="p" fontWeight={600}>
+            Last Update:{props.weekData.last_updated}
+            <br></br>
+            current wind direction:{props.weekData.current_winddirection}°
+          </Typography>
         </Card>
       </MediaQuery>
 
